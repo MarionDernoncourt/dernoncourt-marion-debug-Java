@@ -44,15 +44,6 @@ public class AnalyticsCounter {
 
 		}
 
-		/**
-		 * 
-		 * This code create a new file to write the symptoms and their occurrences by alphabetics.
-		 *
-		 */
-		FileWriter writer = new FileWriter ("result.out");
-		writer.write("headache: " + headacheCount + "\n");
-		writer.write("rash: " + rashCount + "\n");
-		writer.write("dialated pupils: " + pupilCount + "\n");
-		writer.close();
+
 	}
 }
