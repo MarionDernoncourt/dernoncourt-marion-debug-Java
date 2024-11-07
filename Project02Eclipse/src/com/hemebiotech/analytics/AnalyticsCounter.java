@@ -1,49 +1,73 @@
 package com.hemebiotech.analytics;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
- * This class counts the occurrences of the symptoms listed in the file symptoms.txt
- * First it reads the file, then counts the occurrences, sorts by alphabetics, 
- * and create a new file to write the symptoms in alphabetic with their occurrences
+ * AnalyticsCounter's constructor 
+ * 
+ * @param reader object of type ISymptomReader 
+ * @param writer object type ISymptomWriter 
  */
 public class AnalyticsCounter {
 	
-	private static int headacheCount = 0;	
-	private static int rashCount = 0;		
-	private static int pupilCount = 0;		
+	private ISymptomReader reader;
+	private ISymptomWriter writer;
 	
-	public static void main(String args[]) throws Exception {
-		/**
-		 * This function read the file symptoms.txt
-		 * 
-		 * @param symptoms.txt, symptoms's list 
-		 * @return list of symptoms with their occurrences, sort by alphabetics -> result.out
-		 */
-		BufferedReader reader = new BufferedReader (new FileReader("symptoms.txt"));
-		String line = reader.readLine();
-
-		int i = 0;	
-		int headCount = 0;	
-		while (line != null) {
-			i++;	
-			System.out.println("symptom from file: " + line);
-			if (line.equals("headache")) {
-				headCount++;
-				System.out.println("number of headaches: " + headCount);
-			}
-			else if (line.equals("rush")) {
-				rashCount++;
-			}
-			else if (line.contains("pupils")) {
-				pupilCount++;
-			}
-
-			line = reader.readLine();	
-
-		}
-
-
+	public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
+		this.reader = reader;
+		this.writer = writer;
 	}
+	/**
+	 *  Read a list of symptoms
+	 *  
+	 *  @return list of String of the symptoms
+	 */
+	public  List<String> getSymptoms() {
+		return this.reader.getSymptoms();
+	}
+
+	/**
+	 * Generate a Map with symptoms as keys and their occurrences for value
+	 * 
+	 * @param List<String> symptoms
+	 * @return Map<String, Integer>
+	 */
+	public  Map<String, Integer> countSymptoms(List<String> symptoms) {
+		Map<String, Integer> countSymptomsList = new LinkedHashMap<String, Integer>();
+		if (symptoms != null) {
+			for (String symptom : symptoms) {
+				if(countSymptomsList.containsKey(symptom)) {
+					countSymptomsList.put(symptom, countSymptomsList.get(symptom) + 1);
+				} else {
+					countSymptomsList.put(symptom, 1);
+				}
+			}
+		}
+		return countSymptomsList;
+	}
+	
+	/**
+	 * sort the Map by alphabetics
+	 * 
+	 * @param Map(String, Integer) symptoms -> collection of symptoms and their occurrences not sorted
+	 * @return Map(String, Integer) -> alphabetics sorted map of the symptoms and their occurrences 
+	 */
+	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
+		TreeMap<String, Integer> sortedSymptomsList = new TreeMap<String, Integer>(symptoms);
+		return sortedSymptomsList;
+	}
+
+	/**
+	 * Write symptoms and their occurrences in a file
+	 * @param symptoms
+	 */
+	public  void writeSymptoms(Map<String, Integer> symptoms) {
+		this.writer.writeSymptoms(symptoms);
+	}
+	
+	
 }
