@@ -26,7 +26,7 @@ public class AnalyticsCounter {
 	 *  
 	 *  @return list of String of the symptoms
 	 */
-	public  List<String> getSymptoms() {
+	public List<String> getSymptoms() {
 		return this.reader.getSymptoms();
 	}
 
