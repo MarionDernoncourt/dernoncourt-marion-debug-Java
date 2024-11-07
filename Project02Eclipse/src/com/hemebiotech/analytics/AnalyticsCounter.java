@@ -9,13 +9,8 @@ import java.util.TreeMap;
 /**
  * AnalyticsCounter's constructor 
  * 
-<<<<<<< HEAD
  * @param reader object of type ISymptomReader 
  * @param writer object type ISymptomWriter 
-=======
- * @param reader (object of type ISymptomReader -> to read the symptoms
- * @param writer (object type ISymptomWriter -> to write the symptoms
->>>>>>> 04eeac203f46b6e6eb58de7fedf0b77d7f482e9d
  */
 public class AnalyticsCounter {
 	
@@ -32,11 +27,7 @@ public class AnalyticsCounter {
 	 *  @return list of String of the symptoms
 	 */
 	public  List<String> getSymptoms() {
-<<<<<<< HEAD
 		return this.reader.getSymptoms();
-=======
-		return reader.getSymptoms();
->>>>>>> 04eeac203f46b6e6eb58de7fedf0b77d7f482e9d
 	}
 
 	/**
@@ -75,11 +66,7 @@ public class AnalyticsCounter {
 	 * @param symptoms
 	 */
 	public  void writeSymptoms(Map<String, Integer> symptoms) {
-<<<<<<< HEAD
 		this.writer.writeSymptoms(symptoms);
-=======
-		writer.writeSymptoms(symptoms);
->>>>>>> 04eeac203f46b6e6eb58de7fedf0b77d7f482e9d
 	}
 	
 	

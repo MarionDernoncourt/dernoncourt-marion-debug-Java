@@ -13,7 +13,6 @@ import java.util.Set;
  */
 public class WriteSymptomDataToFile implements ISymptomWriter {
 
-	
 /**
  * Write the symptoms and occurrences in result.out
  * 
