@@ -7,30 +7,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Simple brute force implementation
- *
+ * Class for reading the symptoms from a file.
+ * 
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
 	private String filepath;
-	
+
 	/**
 	 * 
-	 * @param filepath a full or partial path to file with symptom strings in it, one per line
-	 */
-	public ReadSymptomDataFromFile (String filepath) {
+	 * 
+	 * @param filepath a full or partial path to file with symptom strings in it,
+	 *                 one per line
+	 * @return result, a List of String (list of symptoms)
+	 **/
+	public ReadSymptomDataFromFile(String filepath) {
 		this.filepath = filepath;
 	}
-	
+
 	@Override
 	public List<String> getSymptoms() {
 		ArrayList<String> result = new ArrayList<String>();
-		
+
 		if (filepath != null) {
 			try {
-				BufferedReader reader = new BufferedReader (new FileReader(filepath));
+				BufferedReader reader = new BufferedReader(new FileReader(filepath));
 				String line = reader.readLine();
-				
+
 				while (line != null) {
 					result.add(line);
 					line = reader.readLine();
@@ -40,7 +43,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return result;
 	}
 
